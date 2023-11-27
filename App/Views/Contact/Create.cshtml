@@ -4,26 +4,19 @@
 }
 
 <div class="text-center">
-   
     <h1>Cadastrar contato</h1>
 </div>
 
-<form asp-controller="Contact" asp-action="Create" method="post">
+<form asp-controller="Contact" asp-action="Post" method="post">
 
-    <div class="mb-3">
-        <label for="name" class="form-label">Nome</label>
-        <input type="text" asp-for="Name" class="form-control" placeholder="Digite o nome do contato">
-    </div>
+    <label for="name">Nome:</label>
+    <input name="name" id="name" type="text" placeholder="Digite o nome"/>
 
-    <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
-        <input type="text" asp-for="Email" class="form-control" placeholder="Digite o email do contato">
-    </div>
+    <label for="email">Email:</label>
+    <input name="email" id="email" type="email" placeholder="Digite o email"/>
 
-    <div class="mb-3">
-        <label for="phoneNumber" class="form-label">Telefone</label>
-        <input type="text" asp-for="PhoneNumber" class="form-control" placeholder="Digite o telefone do contato">
-    </div>
+    <label for="phoneNumber">Telefone:</label>
+    <input name="phoneNumber" id="phoneNumber" type="text" placeholder="Digite o telefone"/>
 
     <div class="mb-3">
         <button type="submit" class="btn btn-primary w-100">Adicionar</button>
