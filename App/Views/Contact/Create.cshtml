@@ -9,14 +9,20 @@
 
 <form asp-controller="Contact" asp-action="Post" method="post">
 
-    <label for="name">Nome:</label>
-    <input name="name" id="name" type="text" placeholder="Digite o nome"/>
+    <div class="mb-3">
+        <label for="name" class="form-label">Nome:</label>
+        <input name="name" class="form-control" id="name" type="text" placeholder="Digite o nome" />
+    </div>
 
-    <label for="email">Email:</label>
-    <input name="email" id="email" type="email" placeholder="Digite o email"/>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input name="email" class="form-control" id="email" type="email" placeholder="Digite o email" />
+    </div>
 
-    <label for="phoneNumber">Telefone:</label>
-    <input name="phoneNumber" id="phoneNumber" type="text" placeholder="Digite o telefone"/>
+    <div class="mb-3">
+        <label for="phoneNumber" class="form-label">Telefone:</label>
+        <input name="phoneNumber" class="form-control" id="phoneNumber" type="text" placeholder="Digite o telefone" />
+    </div>
 
     <div class="mb-3">
         <button type="submit" class="btn btn-primary w-100">Adicionar</button>

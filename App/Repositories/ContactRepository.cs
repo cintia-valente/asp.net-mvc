@@ -10,6 +10,10 @@ namespace App.Repositories
         {
             _databaseContext = databaseContext;
         }
+        public List<ContactModel> GetAll()
+        {
+            return _databaseContext.Contacts.ToList();
+        }
         public ContactModel Create(ContactModel contact)
         {
             _databaseContext.Contacts.Add(contact);
