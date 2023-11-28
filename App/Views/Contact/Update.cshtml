@@ -1,13 +1,15 @@
 ﻿@model ContactModel
 @{
-    ViewData["Title"] = "Criar contato";
+    ViewData["Title"] = "Editar contato";
 }
 
 <div class="text-center">
-    <h1>Cadastrar contato</h1>
+    <h1>Editar contato</h1>
 </div>
 
-<form asp-controller="Contact" asp-action="Post" method="post">
+<form asp-controller="Contact" asp-action="Put" method="post">
+
+    <input type="hidden" asp-for="Id" />
 
     <div class="mb-3">
         <label for="name" class="form-label">Nome:</label>
@@ -25,10 +27,10 @@
     </div>
 
     <div class="mb-3">
-        <button type="submit" class="btn btn-primary w-100">Adicionar</button>
+        <button type="submit" class="btn btn-primary w-100">Alterar</button>
     </div>
 
-     <div class="mb-3">
-        <a  class="btn btn-secondary w-100" asp-controller="Contact" asp-action="Index" role="button">Voltar</a>
+    <div class="mb-3">
+        <a class="btn btn-secondary w-100" asp-controller="Contact" asp-action="Index" role="button">Voltar</a>
     </div>
 </form>

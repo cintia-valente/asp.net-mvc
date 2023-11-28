@@ -23,20 +23,39 @@ namespace App.Controllers
             return View();
         }
 
-        public IActionResult Put()
+        public IActionResult Update(int id)
         {
-            return View();
+            ContactModel contact = _contactRepository.GetForId(id);
+            
+            return View(contact);
         }
 
-        public IActionResult Delete()
+        public IActionResult Remove(int id)
         {
-            return View();
+            ContactModel contact = _contactRepository.GetForId(id);
+
+            return View(contact);
         }
 
         [HttpPost]
         public IActionResult Post(ContactModel contact) 
         {
             _contactRepository.Create(contact);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Put(ContactModel contact)
+        {
+            _contactRepository.Update(contact);
+
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(int id) 
+        {
+            _contactRepository.Delete(id);
 
             return RedirectToAction("Index");
         }
