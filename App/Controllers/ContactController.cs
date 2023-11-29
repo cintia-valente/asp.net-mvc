@@ -38,26 +38,72 @@ namespace App.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(ContactModel contact) 
+        public IActionResult Post(ContactModel contact)
         {
-            _contactRepository.Create(contact);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _contactRepository.Create(contact);
+                    TempData["MessageSucess"] = "Contato cadastrado com sucesso!";
 
-            return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+
+                return View("Create", contact);
+            }
+            catch (Exception ex)
+            {
+                TempData["MessageErr"] = $"Erro ao cadastrar, tente novamente, detalhe do erro: {ex.Message}";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
         public IActionResult Put(ContactModel contact)
         {
-            _contactRepository.Update(contact);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _contactRepository.Update(contact);
+                    TempData["MessageSucess"] = "Contato atualizado com sucesso!";
 
-            return RedirectToAction("Index");
+                    return RedirectToAction("Index");
+                }
+
+                return View("Update", contact);
+            }
+            catch (Exception ex)
+            {
+                TempData["MessageErr"] = $"Erro ao atualizar, tente novamente, detalhe do erro: {ex.Message}";
+                return RedirectToAction("Index");
+            }
+
         }
 
         public IActionResult Delete(int id) 
         {
-            _contactRepository.Delete(id);
+            try
+            {
+                bool delete = _contactRepository.Delete(id);
 
-            return RedirectToAction("Index");
+                if(delete)
+                {
+                    TempData["MessageSucess"] = "Contato apagado com sucesso!";
+                }
+                else
+                {
+                    TempData["MessageErr"] = "Erro ao apagar!";
+                }
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["MessageErr"] = $"Erro ao apagar, tente novamente, detalhe do erro: {ex.Message}";
+                return RedirectToAction("Index");
+            }
         }
     }
 }
