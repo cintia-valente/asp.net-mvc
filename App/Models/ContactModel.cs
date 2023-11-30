@@ -4,6 +4,7 @@ namespace App.Models
 {
     public class ContactModel
     {
+        [Key]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Campo Nome obrigatório.")]

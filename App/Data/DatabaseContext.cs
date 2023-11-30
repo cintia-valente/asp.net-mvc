@@ -19,5 +19,11 @@ namespace App.Data
             get;
             set;
         }
+
+        public DbSet<UserModel> Users
+        {
+            get;
+            set;
+        }
     }
 }
