@@ -7,25 +7,36 @@
 @if (TempData["MessageErr"] != null)
 {
     <div class="alert alert-danger" role="alert">
-        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
         @TempData["MessageErr"]
     </div>
 }
 
-<form asp-controller="Login" asp-action="Post" method="post">
 
+@if (TempData["MessageSucess"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" data-bs-dismiss="alert" aria-label="Close">X</button>
+        @TempData["MensagemSucesso"]
+    </div>
+}
+
+<form asp-controller="Login" asp-action="Enter" method="post">
     <div class="mb-3">
-        <label for="login" class="form-label">Login:</label>
-        <input name="login" asp-for="Login" class="form-control" id="login" type="text" placeholder="Digite o login" />
+        <label for="login" class="form-label">Login</label>
+        <input type="text" asp-for="Login" class="form-control" id="login">
         @Html.ValidationMessageFor(x => x.Login, "", new { @class = "text-danger" })
     </div>
-
     <div class="mb-3">
-        <label for="password" class="form-label">Senha:</label>
-        <input name="password" asp-for="Password" class="form-control" id="password" type="password" placeholder="Digite a senha" />
+        <label for="senha" class="form-label">Senha</label>
+        <input type="password" asp-for="Password" class="form-control" id="senha">
         @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
     </div>
 
-   
+    <p class="mb-4 text-sm mx-auto">
+        Esqueceu sua senha?
+        <a asp-action="RedefinirSenha" asp-controller="Login" class="text-primary text-gradient font-weight-bold">Redefinir minha senha</a>
+    </p>
+
     <button type="submit" class="btn btn-primary w-100">Entrar</button>
 </form>

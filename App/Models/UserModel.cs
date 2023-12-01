@@ -23,7 +23,8 @@ namespace App.Models
         public DateTime RegistrationDate { get; set; } = DateTime.UtcNow;
         public DateTime? UpdateDate { get; set; }
 
-        public bool PasswordValid(string password) {
+        public bool PasswordValid(string password)
+        {
             return Password == password;
         }
     }
