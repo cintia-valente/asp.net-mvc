@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace App.Models
 {
-    public class UserModel
+    public class UserNoPasswordModel
     {
         [Key]
         public int IdUser { get; set; }
@@ -17,14 +17,5 @@ namespace App.Models
         public string Email { get; set; }
 
         public ProfileEnum? Profile { get; set; }
-
-        [Required(ErrorMessage = "Campo Senha obrigatório.")]
-        public string Password {  get; set; }
-        public DateTime RegistrationDate { get; set; } = DateTime.UtcNow;
-        public DateTime? UpdateDate { get; set; }
-
-        public bool PasswordValid(string password) {
-            return Password == password;
-        }
     }
 }

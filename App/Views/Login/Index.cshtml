@@ -1,0 +1,31 @@
+﻿@model LoginModel
+@{
+    Layout = "_LayoutLoggedOut";
+    ViewData["Title"] = "Login";
+}
+
+@if (TempData["MessageErr"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["MessageErr"]
+    </div>
+}
+
+<form asp-controller="Login" asp-action="Post" method="post">
+
+    <div class="mb-3">
+        <label for="login" class="form-label">Login:</label>
+        <input name="login" asp-for="Login" class="form-control" id="login" type="text" placeholder="Digite o login" />
+        @Html.ValidationMessageFor(x => x.Login, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="mb-3">
+        <label for="password" class="form-label">Senha:</label>
+        <input name="password" asp-for="Password" class="form-control" id="password" type="password" placeholder="Digite a senha" />
+        @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+    </div>
+
+   
+    <button type="submit" class="btn btn-primary w-100">Entrar</button>
+</form>

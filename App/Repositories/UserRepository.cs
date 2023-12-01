@@ -24,6 +24,11 @@ namespace App.Repositories
             return user; 
         }
 
+        public UserModel GetForLogin(string login)
+        {
+            return _databaseContext.Users.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper());
+        }
+
         public UserModel GetForId(int id)
         {
             return _databaseContext.Users.FirstOrDefault(x => x.IdUser == id);
@@ -39,7 +44,8 @@ namespace App.Repositories
             userModel.Email= user.Email;
             userModel.Login = user.Login;
             userModel.Profile = user.Profile;
-            userModel.UpdateDate = DateTime.Now;
+            userModel.RegistrationDate = DateTime.UtcNow;
+            userModel.UpdateDate = DateTime.UtcNow;
         
             _databaseContext.Users.Update(userModel);
             _databaseContext.SaveChanges();
