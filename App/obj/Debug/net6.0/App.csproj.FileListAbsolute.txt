@@ -391,3 +391,4 @@ C:\Projetos\App\App\obj\Debug\net6.0\App.csproj.CopyComplete
 C:\Projetos\App\App\bin\Debug\net6.0\Npgsql.dll
 C:\Projetos\App\App\bin\Debug\net6.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Projetos\App\App\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutLoggedOut.cshtml.rz.scp.css
+C:\Projetos\App\App\bin\Debug\net6.0\Newtonsoft.Json.dll

@@ -1,4 +1,5 @@
 ﻿using App.Enums;
+using App.Helper;
 using System.ComponentModel.DataAnnotations;
 
 namespace App.Models
@@ -25,7 +26,20 @@ namespace App.Models
 
         public bool PasswordValid(string password)
         {
-            return Password == password;
+            return Password == password.GenerateHash();
+        }
+
+        public void SetPasswordHash() 
+        {
+            Password = Password.GenerateHash(); 
+        }
+
+        public string GenerateNewPassword()
+        {
+            string newPassword = Guid.NewGuid().ToString().Substring(0, 8);
+            Password = newPassword.GenerateHash();
+
+            return newPassword;
         }
     }
 }

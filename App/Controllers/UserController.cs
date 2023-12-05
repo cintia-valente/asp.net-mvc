@@ -1,9 +1,11 @@
-﻿using App.Models;
+﻿using App.Filters;
+using App.Models;
 using App.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.Controllers
 {
+    [PageRestrictedAdminOnly]
     public class UserController : Controller
     {
         private readonly IUserRepository _userRepository;

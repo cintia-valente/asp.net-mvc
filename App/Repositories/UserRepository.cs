@@ -18,6 +18,7 @@ namespace App.Repositories
         public UserModel Create(UserModel user)
         {
             user.RegistrationDate = DateTime.UtcNow;
+            user.SetPasswordHash();
             _databaseContext.Users.Add(user);
             _databaseContext.SaveChanges();
 
@@ -27,6 +28,11 @@ namespace App.Repositories
         public UserModel GetForLogin(string login)
         {
             return _databaseContext.Users.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper());
+        }
+
+        public UserModel GetForEmailAndLogin(string email, string login)
+        {
+            return _databaseContext.Users.FirstOrDefault(x => x.Email.ToUpper() == email.ToUpper() && x.Login.ToUpper() == login.ToUpper());
         }
 
         public UserModel GetForId(int id)

@@ -4,7 +4,10 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Bem Vindo, @Model.Nome!</h1>
+    <h1 class="display-4">Bem Vindo!</h1>
     <p>Sistema de controle de contatos</p>
-    <span>Seu email é: @Model.Email</span>
+    @if (Model != null)
+    {
+        <span>Seu email é: @Model.Email</span>
+    }
 </div>

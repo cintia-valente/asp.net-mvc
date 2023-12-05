@@ -6,6 +6,8 @@ namespace App.Repositories
     {
         UserModel Create(UserModel user);
         UserModel GetForLogin(string login);
+
+        UserModel GetForEmailAndLogin(string email, string login);
         List<UserModel> GetAll();
         UserModel GetForId(int id);
         UserModel Update(UserModel user);

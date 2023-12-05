@@ -1,9 +1,11 @@
-﻿using App.Models;
+﻿using App.Filters;
+using App.Models;
 using App.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace App.Controllers
 {
+    [PageForUserLogged]
     public class ContactController : Controller
     {
         private readonly IContactRepository _contactRepository; 

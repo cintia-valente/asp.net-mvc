@@ -1,9 +1,11 @@
-﻿using App.Models;
+﻿using App.Filters;
+using App.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace App.Controllers
 {
+    [PageForUserLogged]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -15,12 +17,7 @@ namespace App.Controllers
 
         public IActionResult Index()
         {
-            HomeModel home = new HomeModel();
-
-            home.Nome = "Cíntia Valente";
-            home.Email = "cintia@live.com";
-
-            return View(home);
+            return View();
         }
 
         public IActionResult Privacy()

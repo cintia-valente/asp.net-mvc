@@ -1,4 +1,5 @@
-﻿using App.Models;
+﻿using App.Helper;
+using App.Models;
 using App.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,15 +8,31 @@ namespace App.Controllers
     public class LoginController : Controller
     {
         private readonly IUserRepository _userRepository;
-        public LoginController(IUserRepository userRepository)
+        private readonly ISection _section;
+        public LoginController(IUserRepository userRepository, ISection section)
         {
             _userRepository = userRepository;
+            _section = section;
         }
         public IActionResult Index()
+        {
+            if (_section.GetUserSection() != null) return RedirectToAction("Index", "Home");
+
+            return View();
+        }
+
+        public IActionResult RedefinePassword()
         {
             return View();
         }
 
+        public IActionResult Exit ()
+        {
+            _section.RemoveUserSectionn();
+
+            return RedirectToAction("Index", "Login");
+        }
+ 
         [HttpPost]
         public IActionResult Enter(LoginModel loginModel)
         {
@@ -29,6 +46,7 @@ namespace App.Controllers
                     {
                         if (userModel.PasswordValid(loginModel.Password))
                         {
+                            _section.CreateUserSection(userModel);
                             return RedirectToAction("Index", "Home");
                         }
 
@@ -36,6 +54,36 @@ namespace App.Controllers
                     }
 
                     TempData["MessageErr"] = $"Usuário ou senha inválidos, por favor tente novamente.";
+                }
+
+                return View("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["MessageErr"] = $"Erro ao apagar, tente novamente, detalhe do erro: {ex.Message}";
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost] 
+        public IActionResult SendLinkToResetPassword (RedefinePasswordModel redefinePassword)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    UserModel userModel = _userRepository.GetForEmailAndLogin(redefinePassword.Email, redefinePassword.Login);
+
+                    if (userModel != null)
+                    {
+                        string newPassword = userModel.GenerateNewPassword();    
+
+                        TempData["MessageSucess"] = $"Enviamos para seu email cadastrado uma nova senha.";
+                        
+                        return RedirectToAction("Index", "Login");
+                    }
+
+                    TempData["MessageErr"] = $"Ops, não conseguimos redefinir sua senha. Por favor, verifique os dados informados.";
                 }
 
                 return View("Index");
