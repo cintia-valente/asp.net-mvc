@@ -76,10 +76,22 @@ namespace App.Controllers
 
                     if (userModel != null)
                     {
-                        string newPassword = userModel.GenerateNewPassword();    
-
-                        TempData["MessageSucess"] = $"Enviamos para seu email cadastrado uma nova senha.";
+                        //string newPassword = userModel.GenerateNewPassword();
+                        //string message = $"Sua nova senha é: {newPassword}";
                         
+                        //bool emailSent = _email.Send(userModel.Email, "Sistema de Contatos - Nova Senha", message);
+
+                        //if (emailSent)
+                        //{
+                        //    _userRepository.Update(userModel);
+
+                        //    TempData["MessageSucess"] = $"Enviamos para seu email cadastrado uma nova senha.";
+                        //}
+                        //else
+                        //{
+                        //    TempData["MessageErr"] = $"Ops, não conseguimos enviar o email. Por favor, tente novamente.";
+                        //}
+
                         return RedirectToAction("Index", "Login");
                     }
 

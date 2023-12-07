@@ -1,0 +1,53 @@
+﻿@using App.Enums;
+@model UpdatePasswordModel
+@{
+    ViewData["Title"] = "Alterar senha";
+}
+
+<div class="text-center">
+    <h1>Alterar senha</h1>
+</div>
+
+@if (TempData["MessageSucess"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["MessageSucess"]
+    </div>
+}
+
+@if (TempData["MessageErr"] != null)
+{
+    <div class="alert alert-danger" role="alert">
+        <button type="button" class="btn btn-danger btn-sm close-alert" arial-label="Close">X</button>
+        @TempData["MessageErr"]
+    </div>
+}
+
+<form asp-controller="UpdatePassword" asp-action="Put" method="post">
+    <div class="mb-3">
+        <label for="currentPassword" class="form-label">Senha Atual:</label>
+        <input type="password" asp-for="CurrentPassword" class="form-control" id="password" placeholder="Digite a senha atual" />
+        @Html.ValidationMessageFor(x => x.CurrentPassword, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="mb-3">
+        <label for="newPassword" class="form-label">Nova Senha:</label>
+        <input type="password" asp-for="NewPassword" class="form-control" id="newPassword" placeholder="Digite a nova senha" />
+        @Html.ValidationMessageFor(x => x.NewPassword, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="mb-3">
+        <label for="confirmNewPassword" class="form-label">Confirmar Nova Senha:</label>
+        <input type="password" asp-for="ConfirmNewPassword" class="form-control" id="confirmNewPassword" placeholder="Digite a confirmação da nova senha." />
+        @Html.ValidationMessageFor(x => x.ConfirmNewPassword, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary w-100">Atualizar</button>
+    </div>
+
+    <div class="mb-3">
+        <a class="btn btn-secondary w-100" asp-controller="Home" asp-action="Index" role="button">Voltar</a>
+    </div>
+</form>

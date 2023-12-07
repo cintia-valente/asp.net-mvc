@@ -1,4 +1,5 @@
-﻿using App.Models;
+﻿using App.Data.Map;
+using App.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace App.Data
@@ -24,6 +25,13 @@ namespace App.Data
         {
             get;
             set;
+        }
+
+        protected void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new ContactMap());
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

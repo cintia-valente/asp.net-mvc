@@ -59,6 +59,27 @@ namespace App.Repositories
             return userModel;
         }
 
+        public UserModel UpdatePassword(UpdatePasswordModel updatePasswordModel)
+        {
+            UserModel userDb = GetForId(updatePasswordModel.Id);
+
+            userDb.SetPasswordHash();
+
+            if (userDb == null) throw new Exception("Erro ao atualizar a senha, usuário não encontrado!");
+
+            if(userDb.PasswordValid(updatePasswordModel.CurrentPassword)) throw new Exception("Senha inválida!");
+
+            if (userDb.PasswordValid(updatePasswordModel.NewPassword)) throw new Exception("Nova senha deve ser diferente da senha atual.");
+
+            userDb.SetNewPasswordHash(updatePasswordModel.NewPassword);
+            userDb.UpdateDate = DateTime.UtcNow;
+
+            _databaseContext.Users.Update(userDb);
+            _databaseContext.SaveChanges();
+
+            return userDb;
+        }
+
         public bool Delete(int id)
         {
             UserModel userModel = GetForId(id);

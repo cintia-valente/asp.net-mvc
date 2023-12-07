@@ -34,6 +34,9 @@ namespace App.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("IdUser")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -42,7 +45,12 @@ namespace App.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int>("userIdUser")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("userIdUser");
 
                     b.ToTable("Contacts");
                 });
@@ -71,7 +79,7 @@ namespace App.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Profile")
+                    b.Property<int?>("Profile")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("RegistrationDate")
@@ -83,6 +91,22 @@ namespace App.Migrations
                     b.HasKey("IdUser");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("App.Models.ContactModel", b =>
+                {
+                    b.HasOne("App.Models.UserModel", "user")
+                        .WithMany("Contacts")
+                        .HasForeignKey("userIdUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("user");
+                });
+
+            modelBuilder.Entity("App.Models.UserModel", b =>
+                {
+                    b.Navigation("Contacts");
                 });
 #pragma warning restore 612, 618
         }

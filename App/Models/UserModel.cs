@@ -24,6 +24,7 @@ namespace App.Models
         public DateTime RegistrationDate { get; set; } = DateTime.UtcNow;
         public DateTime? UpdateDate { get; set; }
 
+        public virtual List<ContactModel> Contacts { get; set; }
         public bool PasswordValid(string password)
         {
             return Password == password.GenerateHash();
@@ -34,6 +35,10 @@ namespace App.Models
             Password = Password.GenerateHash(); 
         }
 
+        public void SetNewPasswordHash(string newPassword)
+        {
+            Password = newPassword.GenerateHash();
+        }
         public string GenerateNewPassword()
         {
             string newPassword = Guid.NewGuid().ToString().Substring(0, 8);

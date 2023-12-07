@@ -37,6 +37,7 @@
                 <th scope="col">Login</th>
                 <th scope="col">Email</th>
                 <th scope="col">Perfil</th>
+                <th scope="col">Total de Contatos</th>
                 <th scope="col">Data de Cadastro</th>
             </tr>
         </thead>
@@ -51,6 +52,9 @@
                         <td>@user.Login</td>
                         <td>@user.Email</td>
                         <td>@(user.Profile == App.Enums.ProfileEnum.Admin ? "Administrador" : "Padrão")</td>
+                        <td>
+                            <a href="javascript:" class="btn btn-success btn-sm btn-total-contacts">10</a>
+                        </td>
                         <td>@user.RegistrationDate</td>
                         <td>
                             <div class="btn-group" role="group">

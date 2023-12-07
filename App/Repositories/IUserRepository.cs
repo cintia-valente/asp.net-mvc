@@ -12,6 +12,7 @@ namespace App.Repositories
         UserModel GetForId(int id);
         UserModel Update(UserModel user);
 
+        UserModel UpdatePassword(UpdatePasswordModel updatePasswordModel);
         bool Delete(int id);
     }
 }
