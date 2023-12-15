@@ -53,7 +53,9 @@
                         <td>@user.Email</td>
                         <td>@(user.Profile == App.Enums.ProfileEnum.Admin ? "Administrador" : "Padrão")</td>
                         <td>
-                            <a href="javascript:" class="btn btn-success btn-sm btn-total-contacts">10</a>
+                            <a href="javascript:" class="btn btn-success btn-sm btn-total-contacts" data-toggle="modal" data-target="#modelContactsUser">
+                                @(user.Contacts != null && user.Contacts.Any() ? user.Contacts.Count() : 0)
+                            </a>
                         </td>
                         <td>@user.RegistrationDate</td>
                         <td>
@@ -68,4 +70,37 @@
            
         </tbody>
     </table>
+
+    <div id="modelContactsUser" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Listagem de Contatos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table" id="table-contacts">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Telefone</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>A</td>
+                                <td>A</td>
+                                <td>A</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

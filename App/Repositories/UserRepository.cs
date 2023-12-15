@@ -1,6 +1,7 @@
 ﻿using App.Data;
 using App.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace App.Repositories
 {
@@ -13,7 +14,9 @@ namespace App.Repositories
         }
         public List<UserModel> GetAll()
         {
-            return _databaseContext.Users.ToList();
+            return _databaseContext.Users
+                .Include(x => x.Contacts)
+                .ToList();
         }
         public UserModel Create(UserModel user)
         {

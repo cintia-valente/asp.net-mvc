@@ -1,5 +1,6 @@
 ﻿using App.Enums;
 using App.Helper;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.ComponentModel.DataAnnotations;
 
 namespace App.Models
@@ -18,13 +19,11 @@ namespace App.Models
         public string Email { get; set; }
 
         public ProfileEnum? Profile { get; set; }
-
-        [Required(ErrorMessage = "Campo Senha obrigatório.")]
         public string Password {  get; set; }
         public DateTime RegistrationDate { get; set; } = DateTime.UtcNow;
         public DateTime? UpdateDate { get; set; }
 
-        public ICollection<ContactModel> Contacts { get; set; }
+        public virtual ICollection<ContactModel>? Contacts { get; set; }
 
         public bool PasswordValid(string password)
         {

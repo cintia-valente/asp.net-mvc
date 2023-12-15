@@ -20,8 +20,7 @@ namespace App.Models
         [Phone(ErrorMessage = "Número de telefone inválido!.")]
         public string PhoneNumber { get; set; }
       
-        [Required(ErrorMessage = "Campo Senha obrigatório.")]
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
 
         public UserModel? User { get; set; }
     }

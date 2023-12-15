@@ -18,11 +18,13 @@ namespace App.Filters
                 context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Login" }, { "action", "Index" } });
             }
 
-            UserModel user = JsonConvert.DeserializeObject<UserModel>(sectionUser); 
-
-            if (user.Profile != Enums.ProfileEnum.Admin)
+            else
             {
-                context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Restricted" }, { "action", "Index" } });
+                UserModel user = JsonConvert.DeserializeObject<UserModel>(sectionUser);
+                if (user.Profile != Enums.ProfileEnum.Admin)
+                {
+                    context.Result = new RedirectToRouteResult(new RouteValueDictionary { { "controller", "Restricted" }, { "action", "Index" } });
+                }
             }
 
             base.OnActionExecuting(context);

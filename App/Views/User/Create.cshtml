@@ -12,19 +12,19 @@
 
     <div class="mb-3">
         <label for="name" class="form-label">Nome:</label>
-        <input name="name" asp-for="Name" class="form-control" id="name" type="text" placeholder="Digite o nome" />
+        <input id="name" name="name" asp-for="Name" class="form-control" type="text" autocomplete="on" placeholder="Digite o nome" />
         @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
     </div>
 
     <div class="mb-3">
         <label for="email" class="form-label">Email:</label>
-        <input name="email" asp-for="Email" class="form-control" id="email" type="email" placeholder="Digite o email" />
+        <input id="email" name="email" asp-for="Email" class="form-control" type="email" autocomplete="on" placeholder="Digite o email" />
         @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
     </div>
 
     <div class="mb-3">
         <label for="login" class="form-label">Login:</label>
-        <input name="login" asp-for="Login" class="form-control" id="login" type="text" placeholder="Digite o login" />
+        <input id="login" name="login" asp-for="Login" class="form-control" type="text" autocomplete="on" placeholder="Digite o login" />
         @Html.ValidationMessageFor(x => x.Login, "", new { @class = "text-danger" })
     </div>
 
@@ -32,14 +32,14 @@
         <label for="profile" class="form-label">Perfil:</label>
         <select asp-for="Profile" class="form-control">
             <option value="0">Selecione</option>
-            <option value="@ProfileEnum.Admin">Administrador</option>
-            <option value="@ProfileEnum.Padrao">Padrão</option>
+            <option value="@ProfileEnum.Admin.ToString()">Administrador</option>
+            <option value="@ProfileEnum.Padrao.ToString()">Padrão</option>
         </select>
     </div>
 
     <div class="mb-3">
         <label for="password" class="form-label">Senha:</label>
-        <input name="password" asp-for="Password" class="form-control" id="password" type="text" placeholder="Digite a senha" />
+        <input id="password" name="password" asp-for="Password" class="form-control" type="password" autocomplete="on" placeholder="Digite a senha" />
         @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
     </div>
 

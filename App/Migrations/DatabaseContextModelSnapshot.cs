@@ -42,7 +42,8 @@ namespace App.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
+                        .IsRequired()
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
