@@ -11,19 +11,19 @@
 
     <div class="mb-3">
         <label for="name" class="form-label">Nome:</label>
-        <input name="name" asp-for="Name" class="form-control" id="name" type="text" placeholder="Digite o nome" />
+        <input id="name" name="name" asp-for="Name" class="form-control" type="text" autocomplete="on" placeholder="Digite o nome" />
         @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
     </div>
 
     <div class="mb-3">
         <label for="email" class="form-label">Email:</label>
-        <input name="email" asp-for="Email" class="form-control" id="email" type="email" placeholder="Digite o email" />
+        <input id="email" name="email" asp-for="Email" class="form-control" type="email" autocomplete="on" placeholder="Digite o email" />
         @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger" })
     </div>
 
     <div class="mb-3">
         <label for="phoneNumber" class="form-label">Telefone:</label>
-        <input name="phoneNumber" asp-for="PhoneNumber" class="form-control" id="phoneNumber" type="text" placeholder="Digite o telefone" />
+        <input id="phoneNumber" name="phoneNumber" asp-for="PhoneNumber" class="form-control" type="text" autocomplete="on" placeholder="Digite o telefone" />
         @Html.ValidationMessageFor(x => x.PhoneNumber, "", new { @class = "text-danger" })
     </div>
 
@@ -31,7 +31,7 @@
         <button type="submit" class="btn btn-primary w-100">Adicionar</button>
     </div>
 
-     <div class="mb-3">
-        <a  class="btn btn-secondary w-100" asp-controller="Contact" asp-action="Index" role="button">Voltar</a>
+    <div class="mb-3">
+        <a class="btn btn-secondary w-100" asp-controller="Contact" asp-action="Index" role="button">Voltar</a>
     </div>
 </form>

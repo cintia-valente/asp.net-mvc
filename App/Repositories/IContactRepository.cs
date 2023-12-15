@@ -5,7 +5,7 @@ namespace App.Repositories
     public interface IContactRepository
     {
         ContactModel Create(ContactModel contact);
-        List<ContactModel> GetAll();
+        List<ContactModel> GetAll(int id);
         ContactModel GetForId(int id);
         ContactModel Update(ContactModel contact);
 

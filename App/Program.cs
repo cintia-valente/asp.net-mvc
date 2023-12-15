@@ -13,11 +13,18 @@ builder.Services.AddScoped<IContactRepository, ContactRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ISection, Section>();
 
+
+builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(o =>
 {
     o.IdleTimeout = TimeSpan.FromMinutes(30);
     o.Cookie.HttpOnly = true;
     o.Cookie.IsEssential = true;
+});
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 });
 
 var app = builder.Build();

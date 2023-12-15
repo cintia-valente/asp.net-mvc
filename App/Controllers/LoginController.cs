@@ -26,13 +26,13 @@ namespace App.Controllers
             return View();
         }
 
-        public IActionResult Exit ()
+        public IActionResult Exit()
         {
             _section.RemoveUserSectionn();
 
             return RedirectToAction("Index", "Login");
         }
- 
+
         [HttpPost]
         public IActionResult Enter(LoginModel loginModel)
         {
@@ -41,8 +41,8 @@ namespace App.Controllers
                 if (ModelState.IsValid)
                 {
                     UserModel userModel = _userRepository.GetForLogin(loginModel.Login);
-                    
-                    if (userModel != null) 
+
+                    if (userModel != null)
                     {
                         if (userModel.PasswordValid(loginModel.Password))
                         {
@@ -65,46 +65,46 @@ namespace App.Controllers
             }
         }
 
-        [HttpPost] 
-        public IActionResult SendLinkToResetPassword (RedefinePasswordModel redefinePassword)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    UserModel userModel = _userRepository.GetForEmailAndLogin(redefinePassword.Email, redefinePassword.Login);
+        //[HttpPost] 
+        //public IActionResult SendLinkToResetPassword (RedefinePasswordModel redefinePassword)
+        //{
+        //    try
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            UserModel userModel = _userRepository.GetForEmailAndLogin(redefinePassword.Email, redefinePassword.Login);
 
-                    if (userModel != null)
-                    {
-                        //string newPassword = userModel.GenerateNewPassword();
-                        //string message = $"Sua nova senha é: {newPassword}";
-                        
-                        //bool emailSent = _email.Send(userModel.Email, "Sistema de Contatos - Nova Senha", message);
+        //            if (userModel != null)
+        //            {
+        //                //string newPassword = userModel.GenerateNewPassword();
+        //                //string message = $"Sua nova senha é: {newPassword}";
 
-                        //if (emailSent)
-                        //{
-                        //    _userRepository.Update(userModel);
+        //                //bool emailSent = _email.Send(userModel.Email, "Sistema de Contatos - Nova Senha", message);
 
-                        //    TempData["MessageSucess"] = $"Enviamos para seu email cadastrado uma nova senha.";
-                        //}
-                        //else
-                        //{
-                        //    TempData["MessageErr"] = $"Ops, não conseguimos enviar o email. Por favor, tente novamente.";
-                        //}
+        //                //if (emailSent)
+        //                //{
+        //                //    _userRepository.Update(userModel);
 
-                        return RedirectToAction("Index", "Login");
-                    }
+        //                //    TempData["MessageSucess"] = $"Enviamos para seu email cadastrado uma nova senha.";
+        //                //}
+        //                //else
+        //                //{
+        //                //    TempData["MessageErr"] = $"Ops, não conseguimos enviar o email. Por favor, tente novamente.";
+        //                //}
 
-                    TempData["MessageErr"] = $"Ops, não conseguimos redefinir sua senha. Por favor, verifique os dados informados.";
-                }
+        //                return RedirectToAction("Index", "Login");
+        //            }
 
-                return View("Index");
-            }
-            catch (Exception ex)
-            {
-                TempData["MessageErr"] = $"Erro ao apagar, tente novamente, detalhe do erro: {ex.Message}";
-                return RedirectToAction("Index");
-            }
-        }
+        //            TempData["MessageErr"] = $"Ops, não conseguimos redefinir sua senha. Por favor, verifique os dados informados.";
+        //        }
+
+        //        return View("Index");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        TempData["MessageErr"] = $"Erro ao apagar, tente novamente, detalhe do erro: {ex.Message}";
+        //        return RedirectToAction("Index");
+        //    }
+        //}
     }
 }

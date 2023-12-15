@@ -24,25 +24,26 @@ namespace App.Controllers
         {
             try
             {
-                UserModel userlogged = _section.GetUserSection();
+                  UserModel userlogged = _section.GetUserSection();
                 updatePasswordModel.Id = userlogged.IdUser;
 
                 if (ModelState.IsValid)
                 {
                     _userRepository.UpdatePassword(updatePasswordModel);
                     TempData["MessageSucess"] = "Senha alterada com sucesso!";
-                    
+
                     return View("Index", updatePasswordModel);
                 }
 
                 return View("Index", updatePasswordModel);
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
                 TempData["MessageErr"] = $"Erro ao alterar a senha, tente novamente, detalhe do erro: {ex.Message}";
                 return View("Index", updatePasswordModel);
             }
+            return View();
         }
     }
 }

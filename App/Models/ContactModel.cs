@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace App.Models
 {
@@ -17,7 +19,10 @@ namespace App.Models
         [Required(ErrorMessage = "Campo Telefone obrigatório.")]
         [Phone(ErrorMessage = "Número de telefone inválido!.")]
         public string PhoneNumber { get; set; }
-        public int? IdUser { get; set; }
-        public UserModel user { get; set; }
+      
+        [Required(ErrorMessage = "Campo Senha obrigatório.")]
+        public int UserId { get; set; }
+
+        public UserModel? User { get; set; }
     }
 }

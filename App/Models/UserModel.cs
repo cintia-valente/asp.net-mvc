@@ -24,7 +24,8 @@ namespace App.Models
         public DateTime RegistrationDate { get; set; } = DateTime.UtcNow;
         public DateTime? UpdateDate { get; set; }
 
-        public virtual List<ContactModel> Contacts { get; set; }
+        public ICollection<ContactModel> Contacts { get; set; }
+
         public bool PasswordValid(string password)
         {
             return Password == password.GenerateHash();

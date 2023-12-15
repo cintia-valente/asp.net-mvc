@@ -27,7 +27,7 @@ namespace App.Data
             set;
         }
 
-        protected void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ContactMap());
 

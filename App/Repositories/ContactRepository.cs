@@ -11,9 +11,9 @@ namespace App.Repositories
         {
             this._databaseContext = databaseContext;
         }
-        public List<ContactModel> GetAll()
+        public List<ContactModel> GetAll(int idUser)
         {
-            return _databaseContext.Contacts.ToList();
+            return _databaseContext.Contacts.Where(x => x.UserId == idUser).ToList();
         }
         public ContactModel Create(ContactModel contact)
         {
